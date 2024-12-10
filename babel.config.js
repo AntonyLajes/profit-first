@@ -6,13 +6,16 @@ module.exports = function (api) {
             jsxImportSource: "nativewind"
         }], "nativewind/babel"],
 
-        plugins: [["module-resolver", {
-            root: ["./"],
+        plugins: [
+            ["@babel/plugin-proposal-decorators", { "legacy": true }],
+            [
+                "module-resolver", {
+                    root: ["./"],
 
-            alias: {
-                "@": "./",
-                "tailwind.config": "./tailwind.config.js"
-            }
-        }]]
+                    alias: {
+                        "@": "./",
+                        "tailwind.config": "./tailwind.config.js"
+                    }
+                }]]
     };
 };

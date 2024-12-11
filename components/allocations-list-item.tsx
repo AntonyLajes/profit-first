@@ -1,4 +1,3 @@
-import { FlatList } from "react-native"
 import { Text } from "./ui/text"
 import Allocations from "@/src/data/local/database/model/allocations"
 import { HStack } from "./ui/hstack"
@@ -18,7 +17,9 @@ export default function AllocationsList({ allocation }: AllocationsListProps) {
             >
                 {allocation.createdAt.toLocaleDateString()}
             </Text>
-            <Text>
+            <Text
+                className="text-success-800"
+            >
                 R${allocation.income}
             </Text>
         </HStack>

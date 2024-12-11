@@ -3,6 +3,7 @@ import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite"
 import schema from "../schema/schema"
 import migrations from "../migration/migrations"
 import Account from "../model/account"
+import Allocations from "../model/allocations"
 
 const adapter = new SQLiteAdapter({
     schema,
@@ -11,5 +12,5 @@ const adapter = new SQLiteAdapter({
 
 export const database = new Database({
     adapter,
-    modelClasses: [Account]
+    modelClasses: [Account, Allocations]
 })

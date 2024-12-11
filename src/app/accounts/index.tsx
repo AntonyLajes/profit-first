@@ -34,7 +34,6 @@ export default function Accounts() {
             >
                 <Fab
                     size="lg"
-                    onPress={() => console.log("Cliquei no botão")}
                 >
                     <FabIcon as={PlusIcon} />
                 </Fab>

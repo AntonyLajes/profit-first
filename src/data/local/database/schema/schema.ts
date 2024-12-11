@@ -21,6 +21,21 @@ export default appSchema({
                     }
                 ]
             }
+        ),
+        tableSchema(
+            {
+                name: 'allocations',
+                columns: [
+                    {
+                        name: 'created_at',
+                        type: 'number'
+                    },
+                    {
+                        name: 'income',
+                        type: 'number'
+                    }
+                ]
+            }
         )
     ]
 })

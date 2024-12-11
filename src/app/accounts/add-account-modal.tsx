@@ -37,8 +37,8 @@ export default function Accounts() {
         await db.write(async () => {
             await db.get<Account>('accounts').create(account => {
                 account.name = data.name
-                account.cap = Number(data.cap)
-                account.tap = Number(data.cap)
+                account.cap = Number.parseFloat(data.cap)
+                account.tap = Number.parseFloat(data.cap)
             })
         })
         router.back()
@@ -51,8 +51,8 @@ export default function Accounts() {
 
             account.update((_account) => {
                 _account.name = data.name
-                _account.cap = Number(data.cap)
-                _account.tap = Number(data.tap)
+                _account.cap = Number.parseFloat(data.cap)
+                _account.tap = Number.parseFloat(data.tap)
             })
         })
         router.back()

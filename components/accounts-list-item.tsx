@@ -5,46 +5,58 @@ import { Text } from "./ui/text";
 import { Pressable } from "./ui/pressable";
 import { Link } from "expo-router";
 import { withObservables } from "@nozbe/watermelondb/react";
+import React from "react";
 
-type AccountsListItemProps = {
-    account: Account
+type AccountObservable = {
+    account: Account,
 }
 
-function AccountsListItem({ account }: AccountsListItemProps) {
+type AccountsListItemProps = {
+    account: Account,
+    onDelete: (account: Account) => void
+}
+
+function AccountsListItem({ account, onDelete }: AccountsListItemProps) {
 
     return (
-        <Link
-            href={{
-                pathname: "accounts/add-account-modal",
-                params: {
-                    id: account.id
-                }
-            }}
-            asChild
+        <>
+            <Link
+                href={{
+                    pathname: "accounts/add-account-modal",
+                    params: {
+                        id: account.id
+                    }
+                }}
+                asChild
 
-        >
-            <Pressable>
-                <HStack
-                    className="justify-between bg-white p-4 rounded-md"
+            >
+                <Pressable
+                    onLongPress={() => onDelete(account)}
                 >
-                    <Heading>
-                        {account.name}
-                    </Heading>
-                    <Text>
-                        {account.cap}%
-                    </Text>
-                    <Text>
-                        {account.tap}%
-                    </Text>
-                </HStack>
-            </Pressable>
-        </Link>
+                    <HStack
+                        className="justify-between bg-white p-4 rounded-md"
+                    >
+                        <Heading>
+                            {account.name}
+                        </Heading>
+                        <Text>
+                            {account.cap}%
+                        </Text>
+                        <Text>
+                            {account.tap}%
+                        </Text>
+                    </HStack>
+                </Pressable>
+            </Link>
+        </>
     )
 
 }
 
-const enhance = withObservables(['account'], ({account}) => ({
+
+
+const enhance = withObservables<AccountsListItemProps, AccountObservable>(['account'], ({ account }) => ({
     account: account
 }))
-const EnhancedAccountsListItem = enhance(AccountsListItem)
+const EnhancedAccountsListItem: React.FC<AccountsListItemProps> = enhance(AccountsListItem)
 export default EnhancedAccountsListItem

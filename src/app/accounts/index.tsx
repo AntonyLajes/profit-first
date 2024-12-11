@@ -8,9 +8,9 @@ import { Fab, FabIcon } from "@/components/ui/fab";
 import AccountsList from "@/components/accounts-list";
 
 import { PlusIcon } from "lucide-react-native"
-import { useEffect, useState } from "react";
-import { database } from "@/src/data/local/database/config";
-import Account from "@/src/data/local/database/model/account";
+import { AlertDialog, AlertDialogBackdrop, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader } from "@/components/ui/alert-dialog";
+import { Button, ButtonText } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function Accounts() {
 

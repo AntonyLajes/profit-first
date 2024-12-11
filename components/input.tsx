@@ -25,7 +25,7 @@ export default function Input({ name, ...props }: InputProps) {
                 isInvalid={!!fieldError}
             >
                 <InputField
-                    value={String(field.value)}
+                    value={field.value}
                     onChangeText={field.onChange}
                     {...props}
                 />

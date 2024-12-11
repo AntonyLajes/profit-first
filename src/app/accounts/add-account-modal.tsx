@@ -12,8 +12,8 @@ import Account from "@/src/data/local/database/model/account";
 
 const addAccountSchema = z.object({
     name: z.string().min(1, 'Insira um nome.'),
-    tap: z.coerce.number().min(1, 'Insira um valor válido para o TAP.'),
-    cap: z.coerce.number().min(1, 'Insira um número válido para o CAP.'),
+    tap: z.string().min(1, 'Insira um valor válido para o TAP.'),
+    cap: z.string().min(1, 'Insira um número válido para o CAP.'),
 })
 
 type AddAccountData = z.infer<typeof addAccountSchema>
@@ -37,8 +37,8 @@ export default function Accounts() {
         await db.write(async () => {
             await db.get<Account>('accounts').create(account => {
                 account.name = data.name
-                account.cap = data.cap
-                account.tap = data.tap
+                account.cap = Number(data.cap)
+                account.tap = Number(data.cap)
             })
         })
         router.back()
@@ -51,21 +51,23 @@ export default function Accounts() {
 
             account.update((_account) => {
                 _account.name = data.name
-                _account.cap = data.cap
-                _account.tap = data.tap
+                _account.cap = Number(data.cap)
+                _account.tap = Number(data.tap)
             })
         })
         router.back()
     }
 
     useEffect(() => {
+        console.log(`id =>`, id);
+        
         if(!id) return
         const fetchAccount = async () => {
             const account = await database.get<Account>('accounts').find(id)
             reset({
                 name: account.name,
-                cap: account.cap,
-                tap: account.tap,
+                cap: String(account.cap),
+                tap: String(account.tap),
             })
             console.log(`getValues =>`, getValues())
         }
